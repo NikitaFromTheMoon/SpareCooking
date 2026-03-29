@@ -1,0 +1,8 @@
+spring:
+  application:
+    name:spare_cooking
+  datasource:
+    url: "jdbc:postgresql://localhost:5432/postgres"
+    username: "postgres"
+    password: "admin"
+
