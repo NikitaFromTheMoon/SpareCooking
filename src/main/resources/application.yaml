@@ -5,4 +5,5 @@ spring:
     url: "jdbc:postgresql://localhost:5432/postgres"
     username: "postgres"
     password: "admin"
+    dbname: "sparedc_db"
 
