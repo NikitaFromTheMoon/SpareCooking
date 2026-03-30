@@ -1,6 +1,9 @@
 package com.example.spare_cooking.model.table;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -8,6 +11,9 @@ import java.util.Set;
 
 @Entity
 @Table(name="users")
+@Getter
+@Setter
+@NoArgsConstructor
 public class User {
 
     @Id
