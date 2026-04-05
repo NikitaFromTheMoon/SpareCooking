@@ -1,6 +1,6 @@
 package com.example.spare_cooking.controller;
 
-import com.example.spare_cooking.model.Ingredient;
+import com.example.spare_cooking.model.table.Ingredient;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,11 +14,11 @@ public class TestController {
     public ResponseEntity<Ingredient> getRecipe() {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .header("header-1" )
-                .body(new Ingredient("<bold>WOOL\n</bold>BIG BALLS TEST"));
+                .body(new Ingredient());
     }
 
     @GetMapping("/{id}")
     public Ingredient getIngredientByID(@PathVariable int id) {
-        return new Ingredient("wool"+id);
+        return new Ingredient();
     }
 }
