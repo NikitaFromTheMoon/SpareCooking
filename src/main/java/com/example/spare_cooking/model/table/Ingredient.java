@@ -3,6 +3,7 @@ package com.example.spare_cooking.model.table;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -18,6 +19,6 @@ public class Ingredient {
     private Double conversionCoeff; // Standart units - KG & L, all the others can be converted
     private Boolean isLiquid;
 
-    @OneToMany(mappedBy = "ingredientUnit")
-    private IngredientUnit ingredientUnit;
+    @OneToMany(mappedBy = "ingredient")
+    private List<IngredientUnit> ingredientUnits;
 }
