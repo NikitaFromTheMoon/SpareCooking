@@ -1,20 +1,16 @@
 package com.example.spare_cooking.service;
 
-import com.example.spare_cooking.repository.UserRepository;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
+
+import java.util.Map;
 
 @Service
 public class UserService {
 
-    private final UserRepository userRepository;
-
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
-
-    public String getUserByNameAndPassword(String username, String passwordHashed) {
-        return userRepository.findByUsernameAndPasswordHashed(username, passwordHashed)
-                .map(user -> "Пользователь найден: " + user.getUsername())
-                .orElse("Пользователь не найден");
+    public Map<String, Object> getCurrentUser(Jwt jwt) {
+        return Map.of(
+                "username", jwt.getClaimAsString("preferred_username")
+        );
     }
 }

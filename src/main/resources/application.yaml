@@ -1,6 +1,7 @@
 spring:
   application:
-    name:spare_cooking
+    name: spare_cooking
+
   datasource:
     url: "jdbc:postgresql://localhost:5432/sparecooking"
     username: "postgres"
@@ -14,3 +15,9 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: "http://localhost:8081/realms/sparecook"
