@@ -18,16 +18,22 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class WebUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "keycloak_user_id", unique = true)
+    private String keycloakUserId;
+
     @Column(unique = true, nullable = false)
     private String username;
 
     @Email
+    @Column(unique = true)
     private String email;
+
     private String avatarUrl;
     private String bio;
     private LocalDateTime createdAt;

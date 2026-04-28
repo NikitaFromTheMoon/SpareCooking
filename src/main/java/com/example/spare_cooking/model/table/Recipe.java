@@ -26,7 +26,7 @@ public class Recipe {
 
     @ManyToOne
     @JoinColumn(name = "author_id")
-    private User author;
+    private WebUser author;
 
     @OneToMany(mappedBy="recipe")
     List<IngredientUnit> ingredients;
