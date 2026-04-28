@@ -20,7 +20,7 @@ public class Comment {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private WebUser webUser;
+    private WebUser user;
 
     @ManyToOne
     @JoinColumn(name = "recipe_id")

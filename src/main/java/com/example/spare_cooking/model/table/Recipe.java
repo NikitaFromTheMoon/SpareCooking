@@ -20,6 +20,7 @@ public class Recipe {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
+    @Column(columnDefinition = "TEXT")
     private String title;
     @Column(columnDefinition = "TEXT")
     private String content; // собсна, содержимое поста
@@ -30,6 +31,9 @@ public class Recipe {
 
     @OneToMany(mappedBy="recipe")
     List<IngredientUnit> ingredients;
+
+    @OneToMany(mappedBy="recipe")
+    List<Comment> comments;
 
     @Column(name = "cooking_time")
     private Integer cookingTime;
