@@ -10,9 +10,11 @@ import org.springframework.data.domain.Sort;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import java.time.LocalDateTime;
-import java.util.Map;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -20,31 +22,28 @@ public class UserService {
 
     private final UserRepository userRepository;
 
+    public WebUser getCurrentWebUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if (authentication != null && authentication.getPrincipal() instanceof Jwt jwt) {
+            return getOrCreateCurrentUser(jwt);
+        }
+
+        throw new RuntimeException("Пользователь не авторизован в системе");
+    }
+
     @Transactional
     public WebUser getOrCreateCurrentUser(Jwt jwt) {
         String keycloakUserId = jwt.getSubject();
-        String username = jwt.getClaimAsString("preferred_username");
-        String email = jwt.getClaimAsString("email");
 
-        return userRepository.findByKeyCUserId(keycloakUserId)
+        return userRepository.findByKeycloakUserId(keycloakUserId)
                 .orElseGet(() -> {
                     WebUser webUser = new WebUser();
                     webUser.setKeycloakUserId(keycloakUserId);
-                    webUser.setUsername(username);
-                    webUser.setEmail(email);
+                    webUser.setUsername(jwt.getClaimAsString("preferred_username"));
+                    webUser.setEmail(jwt.getClaimAsString("email"));
                     webUser.setCreatedAt(LocalDateTime.now());
                     return userRepository.save(webUser);
                 });
-    }
-
-    public Map<String, Object> getCurrentUser(Jwt jwt) {
-        WebUser webUser = getOrCreateCurrentUser(jwt);
-
-        return Map.of(
-                "id", webUser.getId(),
-                "keycloakUserId", webUser.getKeycloakUserId(),
-                "username", webUser.getUsername(),
-                "email", webUser.getEmail()
-        );
     }
 }

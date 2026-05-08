@@ -47,6 +47,7 @@ public class WebUser {
             inverseJoinColumns = @JoinColumn(name = "recipe_id"))
     private Set<Recipe> savedRecipes; // сохранённые рецепты
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private List<Comment> comments;
 }
