@@ -23,10 +23,9 @@ public class UserController {
 
     private final UserService userService;
 
-    @GetMapping("/")
-    public Map<String, Object> getCurrentUser(@AuthenticationPrincipal Jwt jwt) {
-        return userService.getCurrentUser(jwt);
+    @GetMapping("/me")
+    public WebUser getCurrentUser() {
+        return userService.getCurrentWebUser();
     }
-
 }
 
