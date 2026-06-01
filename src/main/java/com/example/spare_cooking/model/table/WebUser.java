@@ -2,10 +2,7 @@ package com.example.spare_cooking.model.table;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.time.LocalDateTime;
@@ -18,6 +15,7 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
 public class WebUser {
 
     @Id
@@ -29,6 +27,8 @@ public class WebUser {
 
     @Column(unique = true, nullable = false)
     private String username;
+
+    private Boolean isBanned;
 
     @Email
     @Column(unique = true)

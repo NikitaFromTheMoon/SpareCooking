@@ -1,14 +1,14 @@
 package com.example.spare_cooking.model.table;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import java.util.List;
 
 @Entity
+@Table(name="ingredient")
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="ingredient")
 public class Ingredient {
 
     @Id
@@ -16,7 +16,8 @@ public class Ingredient {
     private Long id;
 
     private String name;
-    private Double conversionCoeff; // Standart units - KG & L, all the others can be converted
+
+    private Double conversionCoeff;
     private Boolean isLiquid;
 
     @OneToMany(mappedBy = "ingredient")
