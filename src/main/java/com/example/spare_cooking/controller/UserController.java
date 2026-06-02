@@ -1,5 +1,6 @@
 package com.example.spare_cooking.controller;
 
+import com.example.spare_cooking.model.table.Comment;
 import com.example.spare_cooking.model.table.WebUser;
 import com.example.spare_cooking.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -28,6 +30,11 @@ public class UserController {
     @PostMapping("/init")
     public WebUser initUser() {
         return userService.getCurrentWebUser();
+    }
+
+    @GetMapping("/users/{id}")
+    public List<Comment> getUserComments(@PathVariable long id) {
+        return null;
     }
 }
 

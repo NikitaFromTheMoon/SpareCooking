@@ -16,7 +16,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -32,6 +31,14 @@ public class UserService {
         }
 
         throw new RuntimeException("Пользователь не авторизован в системе");
+    }
+
+    public Pageable getUserList(int page) {
+
+        Sort sort = Sort.by("createdAt").ascending();
+
+        Pageable pageable = PageRequest.of(page, 10, sort);
+        return pageable;
     }
 
     @Transactional

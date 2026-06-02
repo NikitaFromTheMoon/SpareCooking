@@ -11,5 +11,4 @@ public interface UserRepository extends JpaRepository<WebUser, Long> {
 
     Optional<WebUser> findByKeycloakUserId(String keycloakUserId);
     Page<WebUser> findAll(Pageable pageable);
-
 }

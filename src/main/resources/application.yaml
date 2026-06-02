@@ -6,7 +6,7 @@ spring:
     url: "jdbc:postgresql://localhost:5432/sparecooking"
     username: "postgres"
     password: "admin"
-    driver-class-name: org.postgresql.Driver
+    #driver-class-name: org.postgresql.Driver
 
   jpa:
     hibernate:
